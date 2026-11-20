@@ -104,8 +104,8 @@ local CORNER_PX = isMobile and 18 or 20
 local SCREEN_MARGIN = 8
 
 local uiScalePercent = 100
-local MIN_UI_SCALE = 70
-local MAX_UI_SCALE = 135
+local MIN_UI_SCALE = 0
+local MAX_UI_SCALE = 100
 
 -- ==========================================
 -- ระบบ Anti-AFK (ป้องกันหลุดเกมเมื่อยืนนิ่งเกิน 20 นาที)
@@ -375,7 +375,7 @@ mainFrame.ClipsDescendants = true
 mainFrame.Parent = screenGui
 
 local sizeConstraint = Instance.new("UISizeConstraint")
-sizeConstraint.MinSize = isMobile and Vector2.new(210, TOPBAR_PX) or Vector2.new(250, TOPBAR_PX)
+sizeConstraint.MinSize = Vector2.new(0, 0)
 sizeConstraint.MaxSize = isMobile and Vector2.new(760, 780) or Vector2.new(1120, 920)
 sizeConstraint.Parent = mainFrame
 
@@ -866,7 +866,6 @@ end
 
 local function keepMainFrameInBounds()
 	local size = mainFrame.AbsoluteSize
-	if size.X <= 0 or size.Y <= 0 then return end
 	mainFrame.Position = clampPositionToScreen(mainFrame.Position.X.Scale, mainFrame.Position.Y.Scale, size.X, size.Y)
 end
 
@@ -1612,7 +1611,7 @@ toyHubDropdownBtn.MouseButton1Click:Connect(function()
 	setPresetDropdownOpen(not presetListOpen)
 end)
 
--- การ์ด Size UI
+-- การ์ด Size UI (ล็อกช่วง 0 - 100)
 local sizeCard = Instance.new("Frame")
 sizeCard.Name = "SizeUICard"
 sizeCard.Size = UDim2.new(1, 0, 0, 96)
