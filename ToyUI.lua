@@ -104,7 +104,7 @@ local CORNER_PX = isMobile and 18 or 20
 local SCREEN_MARGIN = 8
 
 local uiScalePercent = 100
-local MIN_UI_SCALE = 0
+local MIN_UI_SCALE = 40
 local MAX_UI_SCALE = 100
 
 -- ==========================================
