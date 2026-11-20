@@ -1,12 +1,952 @@
---[[
- .____                  ________ ___.    _____                           __                
- |    |    __ _______   \_____  \\_ |___/ ____\_ __  ______ ____ _____ _/  |_  ___________ 
- |    |   |  |  \__  \   /   |   \| __ \   __\  |  \/  ___// ___\\__  \\   __\/  _ \_  __ \
- |    |___|  |  // __ \_/    |    \ \_\ \  | |  |  /\___ \\  \___ / __ \|  | (  <_> )  | \/
- |_______ \____/(____  /\_______  /___  /__| |____//____  >\___  >____  /__|  \____/|__|   
-         \/          \/         \/    \/                \/     \/     \/                   
-          \_Welcome to LuaObfuscator.com   (Alpha 0.10.9) ~  Much Love, Ferib 
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
 
-]]--
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
 
-local v0=game:GetService("Players");local v1=game:GetService("TweenService");local v2=game:GetService("UserInputService");local v3=v0.LocalPlayer;local v4=v3:WaitForChild("PlayerGui");if v4:FindFirstChild("ToyHubUI") then v4.ToyHubUI:Destroy();end local v5=v2.TouchEnabled and  not v2.KeyboardEnabled ;local v6=(v5 and (0.46 + 0)) or (772.28 -(201 + 571)) ;local v7=(v5 and (1138.7 -(116 + 1022))) or (0.4 -0) ;local v8=(v5 and 0.68) or (0.56 + 0) ;local v9=(v5 and (182 -132)) or (163 -117) ;local v10=(v5 and 0.3) or 0.25 ;local v11=(v5 and (877 -(814 + 45))) or (49 -29) ;local v12=8;local v13="EN";local v14={};local v15={};local v16={["เมนูหลัก"]="MAIN MENU",["ไทย"]="Thai",["อังกฤษ"]="English",["เปิด"]="On",["ปิด"]="Off",["สำเร็จ"]="Success",["ผิดพลาด"]="Error"};local v17={};local function v18() local v355=0 + 0 ;while true do if (v355==(0 + 0)) then table.clear(v17);for v518,v519 in pairs(v16) do v17[string.lower(v519)]=v518;end break;end end end v18();local function v19(v356) for v479,v480 in utf8.codes(v356) do if ((v480>=(4469 -(261 + 624))) and (v480<=3711)) then return true;end end return false;end local function v20(v357,v358) if (v13=="EN") then return v358 or v357 ;end return v357;end local function v21(v359,v360) if ((typeof(v359)~="string") or (v359=="")) then return v359;end local v361=v19(v359);local v362=v360;if  not v362 then v362=(v361 and "EN") or "TH" ;end if (v362=="EN") then local v488=0 -0 ;local v489;while true do if (v488==0) then if  not v361 then return v359;end if v16[v359] then return v16[v359];end v488=1081 -(1020 + 60) ;end if (v488==(1425 -(630 + 793))) then return v489;end if (v488==1) then v489=v359;for v545,v546 in pairs(v16) do v489=string.gsub(v489,v545,v546);end v488=2;end end else local v490=0;local v491;local v492;while true do if (v490==0) then if v361 then return v359;end v491=string.lower(v359);v490=3 -2 ;end if (v490==(9 -7)) then for v547,v548 in pairs(v17) do v492=string.gsub(v492,string.lower(v547),v548);end return v492;end if (v490==(1 + 0)) then if v17[v491] then return v17[v491];end v492=v359;v490=6 -4 ;end end end end local function v22(v363,v364) if (v363 and v364) then return v363,v364;end local v365=v363 or v364 ;if  not v365 then return "","";end if v19(v365) then return v365,v21(v365,"EN");else return v21(v365,"TH"),v365;end end local function v23() for v481,v482 in ipairs(v14) do if (v482.obj and v482.obj.Parent) then local v510=1747 -(760 + 987) ;local v511;local v512;while true do if ((1913 -(1789 + 124))==v510) then v511,v512=v22(v482.th,v482.en);v482.th=v511;v510=1;end if (v510==1) then v482.en=v512;v482.obj.Text=v20(v511,v512);break;end end end end for v483,v484 in ipairs(v15) do pcall(v484,v13);end end local function v24(v366,v367) if ((typeof(v366)=="string") and (v366~="") and (typeof(v367)=="string") and (v367~="")) then v16[v366]=v367;v18();v23();end end local function v25(v368,v369,v370) local v371,v372=v22(v369,v370);table.insert(v14,{obj=v368,th=v371,en=v372});v368.Text=v20(v371,v372);end local v26=Instance.new("ScreenGui");v26.Name="ToyHubUI";v26.ResetOnSpawn=false;v26.IgnoreGuiInset=true;v26.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;v26.Parent=v4;local v33=Instance.new("Frame");v33.Name="MainFrame";v33.AnchorPoint=Vector2.new(766.5 -(745 + 21) ,0.5 + 0 );v33.Size=UDim2.fromScale(v6,v8);v33.Position=UDim2.fromScale(0.5,0.5 -0 );v33.BackgroundColor3=Color3.fromRGB(78 -58 ,20,1 + 25 );v33.BorderSizePixel=0;v33.ClipsDescendants=true;v33.Parent=v26;local v42=Instance.new("UISizeConstraint");v42.MinSize=(v5 and Vector2.new(230,v9)) or Vector2.new(212 + 58 ,v9) ;v42.MaxSize=(v5 and Vector2.new(1595 -(87 + 968) ,2465 -1905 )) or Vector2.new(744 + 76 ,1537 -857 ) ;v42.Parent=v33;local v46=Instance.new("UICorner");v46.CornerRadius=UDim.new(1413 -(447 + 966) ,v11);v46.Parent=v33;local v49=Instance.new("UIGradient");v49.Color=ColorSequence.new({ColorSequenceKeypoint.new(1817 -(1703 + 114) ,Color3.fromRGB(28,729 -(376 + 325) ,36)),ColorSequenceKeypoint.new(1,Color3.fromRGB(16,48 -32 ,7 + 15 ))});v49.Rotation=297 -162 ;v49.Parent=v33;local v53=Instance.new("UIStroke");v53.Color=Color3.fromRGB(249 -(9 + 5) ,440 -(85 + 291) ,78);v53.Thickness=1266.5 -(243 + 1022) ;v53.Transparency=0.25 -0 ;v53.Parent=v33;local v58=Instance.new("Frame");v58.Name="TopBar";v58.Size=UDim2.new(1 + 0 ,1180 -(1123 + 57) ,0 + 0 ,v9);v58.Position=UDim2.new(254 -(163 + 91) ,0,1930 -(1869 + 61) ,0 + 0 );v58.BackgroundColor3=Color3.fromRGB(30,105 -75 ,61 -21 );v58.BorderSizePixel=0;v58.Parent=v33;local v65=Instance.new("UICorner");v65.CornerRadius=UDim.new(0 + 0 ,v11);v65.Parent=v58;local v68=Instance.new("Frame");v68.Size=UDim2.new(1 -0 ,0 + 0 ,1474 -(1329 + 145) ,math.max(975 -(140 + 831) ,v9-v11 ));v68.Position=UDim2.new(1850 -(1409 + 441) ,0,1, -math.max(722 -(15 + 703) ,v9-v11 ));v68.BackgroundColor3=Color3.fromRGB(30,14 + 16 ,40);v68.BorderSizePixel=438 -(262 + 176) ;v68.Parent=v58;local v74=Instance.new("Frame");v74.Size=UDim2.new(1722 -(345 + 1376) ,688 -(198 + 490) ,0 -0 ,1);v74.Position=UDim2.new(0 -0 ,0,1, -(1207 -(696 + 510)));v74.BackgroundColor3=Color3.fromRGB(52,108 -56 ,68);v74.BorderSizePixel=1262 -(1091 + 171) ;v74.Parent=v58;local v80=Instance.new("TextButton");v80.Name="MenuBtn";v80.AnchorPoint=Vector2.new(0,0.5 + 0 );v80.Size=UDim2.new(0 -0 ,112 -78 ,374 -(123 + 251) ,168 -134 );v80.Position=UDim2.new(698 -(208 + 490) ,1 + 7 ,0.5,0 + 0 );v80.BackgroundColor3=Color3.fromRGB(881 -(660 + 176) ,45,7 + 51 );v80.BackgroundTransparency=202.35 -(14 + 188) ;v80.Text="≡";v80.TextColor3=Color3.fromRGB(255,930 -(534 + 141) ,103 + 152 );v80.Font=Enum.Font.GothamBold;v80.TextSize=20;v80.Parent=v58;local v93=Instance.new("UICorner");v93.CornerRadius=UDim.new(0 + 0 ,10 + 0 );v93.Parent=v80;local v96=Instance.new("TextLabel");v96.AnchorPoint=Vector2.new(0,0.5 -0 );v96.Size=UDim2.new(1, -(206 -76),0.7 -0 ,0 + 0 );v96.Position=UDim2.new(0 + 0 ,50,396.5 -(115 + 281) ,0 -0 );v96.BackgroundTransparency=1;v96.Text="MAIN MENU";v96.TextColor3=Color3.fromRGB(245,245,207 + 43 );v96.Font=Enum.Font.GothamBold;v96.TextSize=(v5 and 13) or 15 ;v96.TextXAlignment=Enum.TextXAlignment.Left;v96.TextTruncate=Enum.TextTruncate.AtEnd;v96.Parent=v58;v25(v96,"เมนูหลัก","MAIN MENU");local v110=Instance.new("TextButton");v110.Name="CloseBtn";v110.AnchorPoint=Vector2.new(2 -1 ,0.5);v110.Size=UDim2.new(0 -0 ,32,0,32);v110.Position=UDim2.new(868 -(550 + 317) , -8,0.5 -0 ,0);v110.BackgroundColor3=Color3.fromRGB(235,89 -25 ,78);v110.BackgroundTransparency=0.15 -0 ;v110.Text="X";v110.TextColor3=Color3.fromRGB(540 -(134 + 151) ,1920 -(970 + 695) ,486 -231 );v110.Font=Enum.Font.GothamBold;v110.TextSize=2004 -(582 + 1408) ;v110.Parent=v58;local v122=Instance.new("UICorner");v122.CornerRadius=UDim.new(0 -0 ,10);v122.Parent=v110;local v125=Instance.new("TextButton");v125.Name="MinBtn";v125.AnchorPoint=Vector2.new(1,0.5);v125.Size=UDim2.new(0 -0 ,32,0 -0 ,1856 -(1195 + 629) );v125.Position=UDim2.new(1, -46,0.5 -0 ,241 -(187 + 54) );v125.BackgroundColor3=Color3.fromRGB(828 -(162 + 618) ,34 + 14 ,62);v125.BackgroundTransparency=0.25 + 0 ;v125.Text="–";v125.TextColor3=Color3.fromRGB(501 -266 ,395 -160 ,245);v125.Font=Enum.Font.GothamBold;v125.TextSize=2 + 14 ;v125.Parent=v58;local v137=Instance.new("UICorner");v137.CornerRadius=UDim.new(1636 -(1373 + 263) ,10);v137.Parent=v125;local v140=Instance.new("Frame");v140.Name="Sidebar";v140.Size=UDim2.new(0,1000 -(451 + 549) ,1, -v9);v140.Position=UDim2.new(0 + 0 ,0 -0 ,0,v9);v140.BackgroundTransparency=1 -0 ;v140.BorderSizePixel=1384 -(746 + 638) ;v140.ClipsDescendants=true;v140.Parent=v33;local v148=Instance.new("UIListLayout");v148.Padding=UDim.new(0 + 0 ,8);v148.HorizontalAlignment=Enum.HorizontalAlignment.Center;v148.Parent=v140;local v153=Instance.new("UIPadding");v153.PaddingTop=UDim.new(0 -0 ,353 -(218 + 123) );v153.PaddingBottom=UDim.new(1581 -(1535 + 46) ,16 + 0 );v153.Parent=v140;local v157=Instance.new("Frame");v157.Name="ContentContainer";v157.Size=UDim2.new(1 + 0 ,0,561 -(306 + 254) , -v9);v157.Position=UDim2.new(0 + 0 ,0 -0 ,1467 -(899 + 568) ,v9);v157.BackgroundTransparency=1 + 0 ;v157.Parent=v33;local v163=(v5 and 52) or 48 ;local v164=math.round(v163 * (2.12 -1) );local v165=(v5 and 34) or 32 ;local v166=(v5 and (637 -(268 + 335))) or (322 -(60 + 230)) ;local v167=(v5 and (606 -(426 + 146))) or (4 + 28) ;local v168=(v5 and (1544 -(282 + 1174))) or (907 -(569 + 242)) ;local v169=v164 + (28 -18) + v168 + 1 + 7 + v165 + (1032 -(706 + 318)) + v166 + (1259 -(721 + 530)) + v167 + (1281 -(945 + 326)) ;local v170=Instance.new("Frame");v170.Name="FloatingTDock";v170.AnchorPoint=Vector2.new(0.5 -0 ,0 + 0 );v170.Size=UDim2.new(700 -(271 + 429) ,v163,0,v164);v170.Position=UDim2.new(0.5 + 0 ,1500 -(1408 + 92) ,1086 -(461 + 625) ,1302 -(993 + 295) );v170.BackgroundTransparency=1 + 0 ;v170.Visible=false;v170.Parent=v26;local v178=Instance.new("Frame");v178.Name="CapsuleFrame";v178.AnchorPoint=Vector2.new(1171.5 -(418 + 753) ,0.5);v178.Size=UDim2.new(0,v163,0 + 0 ,v163);v178.Position=UDim2.new(0.5 + 0 ,0,0.5,0 + 0 );v178.BackgroundColor3=Color3.fromRGB(22,5 + 11 ,20);v178.BorderSizePixel=0;v178.ClipsDescendants=true;v178.ZIndex=1;v178.Parent=v170;local v188=Instance.new("UICorner");v188.CornerRadius=UDim.new(0,v164 * 0.5 );v188.Parent=v178;local v191=Instance.new("UIStroke");v191.Color=Color3.fromRGB(784 -(406 + 123) ,75,1864 -(1749 + 20) );v191.Thickness=1 + 1 ;v191.Transparency=0.15;v191.Parent=v178;local v196=Instance.new("TextButton");v196.Name="OpenFloatingBtn";v196.AnchorPoint=Vector2.new(0.5,1322.5 -(1249 + 73) );v196.Size=UDim2.new(0 + 0 ,v163,1145 -(466 + 679) ,v163);v196.Position=UDim2.new(0,v163 * (0.5 -0) ,0.5 -0 ,1900 -(106 + 1794) );v196.BackgroundColor3=Color3.fromRGB(11 + 21 ,5 + 13 ,70 -46 );v196.Text="";v196.Rotation=0 -0 ;v196.ZIndex=117 -(4 + 110) ;v196.Parent=v178;local v206=Instance.new("UICorner");v206.CornerRadius=UDim.new(0.5,584 -(57 + 527) );v206.Parent=v196;local v209=Instance.new("UIStroke");v209.Color=Color3.fromRGB(255,1522 -(41 + 1386) ,115);v209.Thickness=104.5 -(17 + 86) ;v209.Transparency=0.3 + 0 ;v209.Parent=v196;local v214=Instance.new("TextLabel");v214.Name="GlowBack";v214.AnchorPoint=Vector2.new(0.5 -0 ,0.5 -0 );v214.Size=UDim2.fromScale(1,167 -(122 + 44) );v214.Position=UDim2.fromScale(0.5 -0 ,0.5);v214.BackgroundTransparency=1;v214.Text="T";v214.TextColor3=Color3.fromRGB(845 -590 ,37 + 8 ,11 + 64 );v214.TextTransparency=0.25 -0 ;v214.Font=Enum.Font.FredokaOne;v214.TextSize=(v5 and (95 -(30 + 35))) or 28 ;v214.ZIndex=3 + 0 ;v214.Parent=v196;local v228=Instance.new("UIStroke");v228.Color=Color3.fromRGB(255,1307 -(1043 + 214) ,302 -222 );v228.Thickness=4;v228.Transparency=1212.45 -(323 + 889) ;v228.Parent=v214;local v233=Instance.new("TextLabel");v233.Name="NeonT";v233.AnchorPoint=Vector2.new(0.5 -0 ,580.5 -(361 + 219) );v233.Size=UDim2.fromScale(1,321 -(53 + 267) );v233.Position=UDim2.fromScale(0.5,0.5 + 0 );v233.BackgroundTransparency=414 -(15 + 398) ;v233.Text="T";v233.TextColor3=Color3.fromRGB(255,1237 -(18 + 964) ,255);v233.Font=Enum.Font.FredokaOne;v233.TextSize=(v5 and 28) or (97 -71) ;v233.ZIndex=4;v233.Parent=v196;local v245=Instance.new("UIGradient");v245.Color=ColorSequence.new({ColorSequenceKeypoint.new(0 + 0 ,Color3.fromRGB(1105 -(20 + 830) ,220,176 + 49 )),ColorSequenceKeypoint.new(0.5 + 0 ,Color3.fromRGB(993 -(542 + 196) ,85,225 -120 )),ColorSequenceKeypoint.new(1 + 0 ,Color3.fromRGB(92 + 163 ,35,170 -105 ))});v245.Rotation=230 -140 ;v245.Parent=v233;local v249=Instance.new("TextButton");v249.Name="ClockBtn";v249.AnchorPoint=Vector2.new(1551 -(1126 + 425) ,0.5);v249.Size=UDim2.new(405 -(118 + 287) ,v168,0,133 -99 );v249.Position=UDim2.new(1121 -(118 + 1003) ,v164 + (29 -19) ,377.5 -(142 + 235) ,0 -0 );v249.BackgroundColor3=Color3.fromRGB(8 + 28 ,26,1009 -(553 + 424) );v249.Text=os.date("%H:%M:%S");v249.TextColor3=Color3.fromRGB(481 -226 ,225 + 30 ,253 + 2 );v249.Font=Enum.Font.GothamBold;v249.TextSize=8 + 5 ;v249.ZIndex=1 + 1 ;v249.Parent=v178;local v261=Instance.new("UICorner");v261.CornerRadius=UDim.new(0.5,0);v261.Parent=v249;task.spawn(function() while v26.Parent do v249.Text=os.date("%H:%M:%S");task.wait(1 + 0 );end end);local v264=v164 + (21 -11) + v168 + 8 ;local v265=Instance.new("ImageLabel");v265.Name="CharacterAvatarCircle";v265.AnchorPoint=Vector2.new(0,0.5 -0 );v265.Size=UDim2.new(0 -0 ,v165,0,v165);v265.Position=UDim2.new(0 + 0 ,v264,0.5 -0 ,753 -(239 + 514) );v265.BackgroundColor3=Color3.fromRGB(15 + 27 ,1359 -(797 + 532) ,38);v265.BorderSizePixel=0;v265.ScaleType=Enum.ScaleType.Crop;v265.ZIndex=3;v265.Parent=v178;local v276=Instance.new("UICorner");v276.CornerRadius=UDim.new(0.5,0);v276.Parent=v265;local v279=Instance.new("UIStroke");v279.Color=Color3.fromRGB(186 + 69 ,29 + 56 ,246 -141 );v279.Thickness=1203.6 -(373 + 829) ;v279.Transparency=731.2 -(476 + 255) ;v279.Parent=v265;task.spawn(function() local v374,v375=pcall(function() return v0:GetUserThumbnailAsync(v3.UserId,Enum.ThumbnailType.HeadShot,Enum.ThumbnailSize.Size150x150);end);if (v374 and v375 and v265.Parent) then v265.Image=v375;end end);local v284=v264 + v165 + (1138 -(369 + 761)) ;local v285=Instance.new("TextButton");v285.Name="LangCircleBtn";v285.AnchorPoint=Vector2.new(0 + 0 ,0.5);v285.Size=UDim2.new(0 -0 ,v166,0 -0 ,v166);v285.Position=UDim2.new(0,v284,0.5,238 -(64 + 174) );v285.BackgroundColor3=((v13=="EN") and Color3.fromRGB(34 + 201 ,94 -30 ,78)) or Color3.fromRGB(372 -(144 + 192) ,242 -(42 + 174) ,32) ;v285.Text=v13;v285.TextColor3=Color3.fromRGB(192 + 63 ,255,212 + 43 );v285.Font=Enum.Font.GothamBold;v285.TextSize=6 + 6 ;v285.ZIndex=1508 -(363 + 1141) ;v285.Parent=v178;local v297=Instance.new("UICorner");v297.CornerRadius=UDim.new(1580.5 -(1183 + 397) ,0);v297.Parent=v285;local v300=Instance.new("UIStroke");v300.Color=Color3.fromRGB(776 -521 ,63 + 22 ,79 + 26 );v300.Thickness=1976.5 -(1913 + 62) ;v300.Transparency=((v13=="EN") and 0) or 0.25 ;v300.Parent=v285;v285.MouseButton1Click:Connect(function() local v376=0 + 0 ;while true do if (v376==(0 -0)) then v13=((v13=="TH") and "EN") or "TH" ;v285.Text=v13;v376=1;end if ((1934 -(565 + 1368))==v376) then if (v13=="EN") then v285.BackgroundColor3=Color3.fromRGB(235,240 -176 ,78);v300.Transparency=0;else local v529=1661 -(1477 + 184) ;while true do if (v529==(0 -0)) then v285.BackgroundColor3=Color3.fromRGB(34 + 2 ,882 -(564 + 292) ,32);v300.Transparency=0.25 -0 ;break;end end end v23();break;end end end);local v305=v284 + v166 + (23 -15) ;local v306=Instance.new("TextButton");v306.Name="PinLockBtn";v306.AnchorPoint=Vector2.new(304 -(244 + 60) ,0.5 + 0 );v306.Size=UDim2.new(0,v167,0,v167);v306.Position=UDim2.new(476 -(41 + 435) ,v305,1001.5 -(938 + 63) ,0 + 0 );v306.BackgroundColor3=Color3.fromRGB(36,1151 -(936 + 189) ,11 + 21 );v306.Text="🔓";v306.TextColor3=Color3.fromRGB(1868 -(1565 + 48) ,158 + 97 ,255);v306.Font=Enum.Font.GothamBold;v306.TextSize=1153 -(782 + 356) ;v306.ZIndex=271 -(176 + 91) ;v306.Parent=v178;local v318=Instance.new("UICorner");v318.CornerRadius=UDim.new(0.5 -0 ,0 -0 );v318.Parent=v306;local v321=Instance.new("UIStroke");v321.Color=Color3.fromRGB(255,85,1197 -(975 + 117) );v321.Thickness=1876.5 -(157 + 1718) ;v321.Transparency=0.25;v321.Parent=v306;local v326=false;local v327=false;local v328=false;local v329=0 + 0 ;local v330=TweenInfo.new(0.18 -0 ,Enum.EasingStyle.Back,Enum.EasingDirection.Out);local v331=TweenInfo.new(0.22,Enum.EasingStyle.Quart,Enum.EasingDirection.Out);local v332=TweenInfo.new(0.42,Enum.EasingStyle.Quart,Enum.EasingDirection.Out);local function v333() local v377=v326 or v327 ;if v377 then if  not v328 then v196.Rotation=0;v1:Create(v196,v332,{Rotation=360}):Play();end v328=true;v1:Create(v170,v331,{Size=UDim2.new(0,v169,0 -0 ,v164)}):Play();v1:Create(v178,v331,{Size=UDim2.new(0,v169,1018 -(697 + 321) ,v164),Position=UDim2.new(0.5 -0 ,0 -0 ,0.5,0 -0 )}):Play();v1:Create(v196,v330,{Size=UDim2.new(0 + 0 ,v164,0 -0 ,v164),Position=UDim2.new(0,v164 * (0.5 -0) ,1227.5 -(322 + 905) ,0),BackgroundColor3=Color3.fromRGB(663 -(602 + 9) ,22,1221 -(449 + 740) )}):Play();v1:Create(v209,v331,{Thickness=2.4,Transparency=0}):Play();v1:Create(v228,v331,{Thickness=7.5,Transparency=872.1 -(826 + 46) }):Play();else v328=false;v1:Create(v196,v331,{Size=UDim2.new(947 -(245 + 702) ,v163,0 -0 ,v163),Position=UDim2.new(0 + 0 ,v163 * 0.5 ,0.5,1898 -(260 + 1638) ),BackgroundColor3=Color3.fromRGB(472 -(382 + 58) ,57 -39 ,20 + 4 ),Rotation=0}):Play();v1:Create(v170,v331,{Size=UDim2.new(0 -0 ,v163,0 -0 ,v164)}):Play();v1:Create(v178,v331,{Size=UDim2.new(1205 -(902 + 303) ,v163,0 -0 ,v163),Position=UDim2.new(0.5 -0 ,0 + 0 ,1690.5 -(1121 + 569) ,0)}):Play();v1:Create(v209,v331,{Thickness=215.5 -(22 + 192) ,Transparency=0.3}):Play();v1:Create(v228,v331,{Thickness=687 -(483 + 200) ,Transparency=0.45}):Play();end end local function v334(v378,v379) local v380=1463 -(1404 + 59) ;local v381;local v382;while true do if (v380==(2 -1)) then v382=v379.AbsoluteSize;return (v378.X>=v381.X) and (v378.X<=(v381.X + v382.X)) and (v378.Y>=v381.Y) and (v378.Y<=(v381.Y + v382.Y)) ;end if ((0 -0)==v380) then if ( not v379 or  not v379.Visible) then return false;end v381=v379.AbsolutePosition;v380=1;end end end local function v335() local v383=v2:GetMouseLocation();return v334(v383,v196) or v334(v383,v178) or v334(v383,v249) or v334(v383,v265) or v334(v383,v285) or v334(v383,v306) ;end local function v336(v384) v384.MouseEnter:Connect(function() local v486=765 -(468 + 297) ;while true do if (v486==(562 -(334 + 228))) then v329+=(3 -2) v326=true;v486=2 -1 ;end if (v486==(1 -0)) then v333();break;end end end);v384.MouseLeave:Connect(function() v329+=1 local v487=v329;task.delay(0.1 + 0 ,function() local v495=0;while true do if (v495==(236 -(141 + 95))) then if (v487~=v329) then return;end v326=v335();v495=1 + 0 ;end if (v495==(2 -1)) then v333();break;end end end);end);end v336(v196);v336(v178);v336(v249);v336(v265);v336(v285);v336(v306);v306.MouseButton1Click:Connect(function() local v385=0 -0 ;while true do if (v385==(1 + 0)) then v333();break;end if (v385==(0 -0)) then v327= not v327;if v327 then local v530=0 + 0 ;while true do if (v530==(0 + 0)) then v306.Text="🔒";v306.BackgroundColor3=Color3.fromRGB(330 -95 ,38 + 26 ,78);v530=164 -(92 + 71) ;end if (v530==1) then v321.Transparency=0 + 0 ;break;end end else local v531=0 -0 ;while true do if (v531==(765 -(574 + 191))) then v306.Text="🔓";v306.BackgroundColor3=Color3.fromRGB(30 + 6 ,64 -38 ,32);v531=1 + 0 ;end if ((850 -(254 + 595))==v531) then v321.Transparency=126.25 -(55 + 71) ;v326=v335();break;end end end v385=1 -0 ;end end end);local function v337() local v386=workspace.CurrentCamera;return (v386 and v386.ViewportSize) or Vector2.new(1920,2870 -(573 + 1217) ) ;end local function v338(v387,v388,v389,v390) local v391=0 -0 ;local v392;local v393;local v394;local v395;local v396;local v397;local v398;local v399;local v400;while true do if (v391==0) then v392=v337();v393=(v389 * (0.5 + 0)) + v12 ;v391=1 -0 ;end if (v391==(941 -(714 + 225))) then v396=math.max(v392.X-v393 ,v392.X * (0.5 -0) );v397=math.min(v394,v392.Y * (0.5 -0) );v391=1 + 2 ;end if (v391==(3 -0)) then v398=math.max(v392.Y-v394 ,v392.Y * (806.5 -(118 + 688)) );v399=math.clamp(v387 * v392.X ,v395,v396);v391=52 -(25 + 23) ;end if (v391==4) then v400=math.clamp(v388 * v392.Y ,v397,v398);return UDim2.fromScale(v399/v392.X ,v400/v392.Y );end if (v391==1) then v394=(v390 * (0.5 + 0)) + v12 ;v395=math.min(v393,v392.X * (1886.5 -(927 + 959)) );v391=2;end end end local function v339() local v401=0 -0 ;local v402;local v403;while true do if (0==v401) then v402=v337();v403=v33.AbsoluteSize;v401=733 -(16 + 716) ;end if (v401==(1 -0)) then if ((v403.X<=(97 -(11 + 86))) or (v403.Y<=(0 -0))) then return;end v33.Position=v338(v33.Position.X.Scale,v33.Position.Y.Scale,v403.X,v403.Y);break;end end end local v340={};local v341={};local v342=nil;local function v343(v404) local v405=285 -(175 + 110) ;while true do if ((0 -0)==v405) then v342=v404;for v522,v523 in pairs(v340) do v523.Visible=v522==v404 ;end v405=4 -3 ;end if ((1797 -(503 + 1293))==v405) then for v525,v526 in pairs(v341) do if (v525==v404) then v526.BackgroundColor3=Color3.fromRGB(235,178 -114 ,57 + 21 );v526.TextColor3=Color3.fromRGB(255,255,1316 -(810 + 251) );else local v554=0 + 0 ;while true do if (v554==0) then v526.BackgroundColor3=Color3.fromRGB(12 + 24 ,33 + 3 ,579 -(43 + 490) );v526.TextColor3=Color3.fromRGB(943 -(711 + 22) ,812 -602 ,1079 -(240 + 619) );break;end end end end break;end end end local function v344(v406,v407) local v408,v409=v22(v406,v407);local v410=((v408~="") and v408) or v409 ;local v411=Instance.new("ScrollingFrame");v411.Name=(((v409~="") and v409) or "Tab")   .. "Page" ;v411.Size=UDim2.new(1, -(6 + 18),1, -24);v411.Position=UDim2.new(0 -0 ,1 + 11 ,0,12);v411.BackgroundTransparency=1;v411.BorderSizePixel=0;v411.ScrollBarThickness=1748 -(1344 + 400) ;v411.ScrollBarImageColor3=Color3.fromRGB(640 -(255 + 150) ,51 + 13 ,78);v411.CanvasSize=UDim2.new(0 + 0 ,0 -0 ,0,0 -0 );v411.AutomaticCanvasSize=Enum.AutomaticSize.Y;v411.Visible=false;v411.Parent=v157;local v424=Instance.new("UIListLayout");v424.Padding=UDim.new(1739 -(404 + 1335) ,10);v424.Parent=v411;local v427=Instance.new("UIPadding");v427.PaddingBottom=UDim.new(0,426 -(183 + 223) );v427.Parent=v411;v340[v410]=v411;local v431=Instance.new("TextButton");v431.Size=UDim2.new(0.86,0,0 -0 ,(v5 and 38) or 34 );v431.BackgroundColor3=Color3.fromRGB(36,36,31 + 15 );v431.Text=v20(v408,v409);v431.TextColor3=Color3.fromRGB(210,210,220);v431.Font=Enum.Font.GothamSemibold;v431.TextSize=5 + 8 ;v431.Parent=v140;v25(v431,v408,v409);local v440=Instance.new("UICorner");v440.CornerRadius=UDim.new(337 -(10 + 327) ,9 + 3 );v440.Parent=v431;v341[v410]=v431;v431.MouseButton1Click:Connect(function() v343(v410);end);if  not v342 then v343(v410);end return v411;end local function v345(v444,v445,v446,v447) local v448,v449=v22(v445,v446);local v450=Instance.new("TextButton");v450.Size=UDim2.new(339 -(118 + 220) ,0 + 0 ,449 -(108 + 341) ,(v5 and (21 + 25)) or 42 );v450.BackgroundColor3=Color3.fromRGB(143 -109 ,34,1537 -(711 + 782) );v450.Text=v20(v448,v449);v450.TextColor3=Color3.fromRGB(245,245,479 -229 );v450.Font=Enum.Font.GothamSemibold;v450.TextSize=483 -(270 + 199) ;v450.Parent=v444;v25(v450,v448,v449);local v459=Instance.new("UICorner");v459.CornerRadius=UDim.new(0 + 0 ,1833 -(580 + 1239) );v459.Parent=v450;local v462=Instance.new("UIStroke");v462.Color=Color3.fromRGB(183 -121 ,62,78);v462.Thickness=1;v462.Transparency=0.4 + 0 ;v462.Parent=v450;v450.MouseEnter:Connect(function() v1:Create(v450,TweenInfo.new(0.15 + 0 ),{BackgroundColor3=Color3.fromRGB(48,48,62)}):Play();end);v450.MouseLeave:Connect(function() v1:Create(v450,TweenInfo.new(0.15 + 0 ),{BackgroundColor3=Color3.fromRGB(88 -54 ,34,28 + 16 )}):Play();end);v450.MouseButton1Click:Connect(function() if v447 then v447(v13);end end);return v450;end v23();local v346=false;local v347=false;local v348=TweenInfo.new(1167.22 -(645 + 522) ,Enum.EasingStyle.Quart,Enum.EasingDirection.Out);v80.MouseButton1Click:Connect(function() local v467=1790 -(1010 + 780) ;while true do if (v467==(0 + 0)) then if v347 then return;end v346= not v346;v467=4 -3 ;end if (v467==(2 -1)) then if v346 then local v532=0;while true do if (v532==1) then v1:Create(v157,v348,{Size=UDim2.new(1 -v10 ,1836 -(1045 + 791) ,1, -v9),Position=UDim2.new(v10,0,0 -0 ,v9)}):Play();break;end if (0==v532) then v1:Create(v33,v348,{Size=UDim2.fromScale(v7,v8)}):Play();v1:Create(v140,v348,{Size=UDim2.new(v10,0 -0 ,506 -(351 + 154) , -v9)}):Play();v532=1;end end else local v533=1574 -(1281 + 293) ;while true do if ((267 -(28 + 238))==v533) then v1:Create(v157,v348,{Size=UDim2.new(1,0 -0 ,1560 -(1381 + 178) , -v9),Position=UDim2.new(0,0,0 + 0 ,v9)}):Play();break;end if (v533==0) then v1:Create(v33,v348,{Size=UDim2.fromScale(v6,v8)}):Play();v1:Create(v140,v348,{Size=UDim2.new(0 + 0 ,0 + 0 ,1, -v9)}):Play();v533=3 -2 ;end end end task.delay(0.24,v339);break;end end end);v125.MouseButton1Click:Connect(function() v347= not v347;local v468=v337();local v469=(v346 and v7) or v6 ;local v470=v9/v468.Y ;if v347 then v157.Visible=false;v140.Visible=false;v68.Visible=false;v74.Visible=false;v1:Create(v33,v348,{Size=UDim2.fromScale(v469,v470)}):Play();v125.Text="+";else v1:Create(v33,v348,{Size=UDim2.fromScale(v469,v8)}):Play();task.delay(0.1 + 0 ,function() if  not v347 then v157.Visible=true;v140.Visible=true;v68.Visible=true;v74.Visible=true;end end);v125.Text="–";end task.delay(470.24 -(381 + 89) ,v339);end);local function v349() v33.Visible=true;v170.Visible=false;v326=false;v328=false;v339();end v110.MouseButton1Click:Connect(function() v33.Visible=false;v170.Visible=true;v333();end);v196.MouseButton1Click:Connect(v349);v249.MouseButton1Click:Connect(v349);local v350,v351,v352,v353;v58.InputBegan:Connect(function(v475) if ((v475.UserInputType==Enum.UserInputType.MouseButton1) or (v475.UserInputType==Enum.UserInputType.Touch)) then local v502=0 + 0 ;while true do if (v502==0) then v350=true;v352=v475.Position;v502=1 + 0 ;end if (v502==1) then v353=v33.Position;v475.Changed:Connect(function() if (v475.UserInputState==Enum.UserInputState.End) then v350=false;end end);break;end end end end);v58.InputChanged:Connect(function(v476) if ((v476.UserInputType==Enum.UserInputType.MouseMovement) or (v476.UserInputType==Enum.UserInputType.Touch)) then v351=v476;end end);v2.InputChanged:Connect(function(v477) if ((v477==v351) and v350) then local v503=0 -0 ;local v504;local v505;local v506;local v507;local v508;while true do if (v503==(1158 -(1074 + 82))) then v508=v33.AbsoluteSize;v33.Position=v338(v506,v507,v508.X,v508.Y);break;end if (v503==0) then v504=v337();v505=v477.Position-v352 ;v503=1;end if (v503==1) then v506=v353.X.Scale + (v505.X/v504.X) ;v507=v353.Y.Scale + (v505.Y/v504.Y) ;v503=3 -1 ;end end end end);v33:GetPropertyChangedSignal("AbsoluteSize"):Connect(v339);getgenv().ToyHubAPI={createTab=v344,addButton=v345,selectTab=v343,L=v20,translateThEn=v21,registerTranslatable=v25,addDict=v24,setLanguage=function(v478) if ((v478=="TH") or (v478=="EN")) then local v509=1784 -(214 + 1570) ;while true do if (v509==(1455 -(990 + 465))) then v13=v478;v285.Text=v13;v509=1 + 0 ;end if (v509==1) then v285.BackgroundColor3=((v13=="EN") and Color3.fromRGB(235,28 + 36 ,76 + 2 )) or Color3.fromRGB(141 -105 ,1752 -(1668 + 58) ,658 -(512 + 114) ) ;v300.Transparency=((v13=="EN") and (0 -0)) or 0.25 ;v509=3 -1 ;end if (v509==(6 -4)) then v23();break;end end end end,getLanguage=function() return v13;end};
+if playerGui:FindFirstChild("ToyHubUI") then
+	playerGui.ToyHubUI:Destroy()
+end
+
+local isMobile = UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled
+
+-- ขนาดแบบ Scale และพิกเซลสำคัญ
+local CLOSED_WIDTH = isMobile and 0.46 or 0.28
+local OPEN_WIDTH = isMobile and 0.70 or 0.40
+local FRAME_HEIGHT = isMobile and 0.68 or 0.56
+local TOPBAR_PX = isMobile and 50 or 46
+local SIDEBAR_SCALE = isMobile and 0.30 or 0.25
+local CORNER_PX = isMobile and 18 or 20
+local SCREEN_MARGIN = 8
+
+-- ==========================================
+-- ระบบสลับและแปลภาษาไทย <-> อังกฤษ (เริ่มต้นเป็น EN)
+-- ==========================================
+local currentLang = "EN" -- "TH" หรือ "EN"
+local translatableRegistry = {}
+local onLanguageChangedCallbacks = {}
+
+local TH_TO_EN = {
+	["เมนูหลัก"] = "MAIN MENU",
+	["ไทย"] = "Thai",
+	["อังกฤษ"] = "English",
+	["เปิด"] = "On",
+	["ปิด"] = "Off",
+	["สำเร็จ"] = "Success",
+	["ผิดพลาด"] = "Error",
+}
+
+local EN_TO_TH = {}
+
+local function rebuildReverseDict()
+	table.clear(EN_TO_TH)
+	for th, en in pairs(TH_TO_EN) do
+		EN_TO_TH[string.lower(en)] = th
+	end
+end
+rebuildReverseDict()
+
+local function containsThai(str)
+	for _, codepoint in utf8.codes(str) do
+		if codepoint >= 0x0E00 and codepoint <= 0x0E7F then
+			return true
+		end
+	end
+	return false
+end
+
+local function L(thText, enText)
+	if currentLang == "EN" then
+		return enText or thText
+	end
+	return thText
+end
+
+-- ฟังก์ชันกลางสำหรับแปลข้อความไทย <-> อังกฤษ ไม่ว่าจะสร้างฟังก์ชันอะไรเพิ่มในอนาคต
+-- targetLang: "TH" หรือ "EN" (ถ้าไม่ระบุ จะแปลไปอีกภาษาหนึ่งจากภาษาต้นฉบับ)
+local function translateThEn(text, targetLang)
+	if typeof(text) ~= "string" or text == "" then
+		return text
+	end
+
+	local sourceIsThai = containsThai(text)
+	local dest = targetLang
+	if not dest then
+		dest = sourceIsThai and "EN" or "TH"
+	end
+
+	if dest == "EN" then
+		if not sourceIsThai then
+			return text
+		end
+		if TH_TO_EN[text] then
+			return TH_TO_EN[text]
+		end
+		local result = text
+		for thPhrase, enPhrase in pairs(TH_TO_EN) do
+			result = string.gsub(result, thPhrase, enPhrase)
+		end
+		return result
+	else
+		if sourceIsThai then
+			return text
+		end
+		local lowerText = string.lower(text)
+		if EN_TO_TH[lowerText] then
+			return EN_TO_TH[lowerText]
+		end
+		local result = text
+		for enPhrase, thPhrase in pairs(EN_TO_TH) do
+			result = string.gsub(result, string.lower(enPhrase), thPhrase)
+		end
+		return result
+	end
+end
+
+local function resolveBilingualPair(firstText, secondText)
+	if firstText and secondText then
+		return firstText, secondText
+	end
+	local single = firstText or secondText
+	if not single then
+		return "", ""
+	end
+	if containsThai(single) then
+		return single, translateThEn(single, "EN")
+	else
+		return translateThEn(single, "TH"), single
+	end
+end
+
+local function applyLanguageToAll()
+	for _, item in ipairs(translatableRegistry) do
+		if item.obj and item.obj.Parent then
+			local resolvedTh, resolvedEn = resolveBilingualPair(item.th, item.en)
+			item.th = resolvedTh
+			item.en = resolvedEn
+			item.obj.Text = L(resolvedTh, resolvedEn)
+		end
+	end
+	for _, cb in ipairs(onLanguageChangedCallbacks) do
+		pcall(cb, currentLang)
+	end
+end
+
+local function addDict(thWord, enWord)
+	if typeof(thWord) == "string" and thWord ~= "" and typeof(enWord) == "string" and enWord ~= "" then
+		TH_TO_EN[thWord] = enWord
+		rebuildReverseDict()
+		applyLanguageToAll()
+	end
+end
+
+local function registerTranslatable(guiObj, thText, enText)
+	local resolvedTh, resolvedEn = resolveBilingualPair(thText, enText)
+	table.insert(translatableRegistry, {
+		obj = guiObj,
+		th = resolvedTh,
+		en = resolvedEn,
+	})
+	guiObj.Text = L(resolvedTh, resolvedEn)
+end
+
+-- 1. ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "ToyHubUI"
+screenGui.ResetOnSpawn = false
+screenGui.IgnoreGuiInset = true
+screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+screenGui.Parent = playerGui
+
+-- 2. หน้าต่างหลัก (MainFrame) — เปิดกาง Sidebar ไว้ตั้งแต่ต้น
+local mainFrame = Instance.new("Frame")
+mainFrame.Name = "MainFrame"
+mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+mainFrame.Size = UDim2.fromScale(OPEN_WIDTH, FRAME_HEIGHT)
+mainFrame.Position = UDim2.fromScale(0.5, 0.5)
+mainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 26)
+mainFrame.BorderSizePixel = 0
+mainFrame.ClipsDescendants = true
+mainFrame.Parent = screenGui
+
+local sizeConstraint = Instance.new("UISizeConstraint")
+sizeConstraint.MinSize = isMobile and Vector2.new(230, TOPBAR_PX) or Vector2.new(270, TOPBAR_PX)
+sizeConstraint.MaxSize = isMobile and Vector2.new(540, 560) or Vector2.new(820, 680)
+sizeConstraint.Parent = mainFrame
+
+local mainCorner = Instance.new("UICorner")
+mainCorner.CornerRadius = UDim.new(0, CORNER_PX)
+mainCorner.Parent = mainFrame
+
+local bgGradient = Instance.new("UIGradient")
+bgGradient.Color = ColorSequence.new({
+	ColorSequenceKeypoint.new(0, Color3.fromRGB(28, 28, 36)),
+	ColorSequenceKeypoint.new(1, Color3.fromRGB(16, 16, 22))
+})
+bgGradient.Rotation = 135
+bgGradient.Parent = mainFrame
+
+local mainStroke = Instance.new("UIStroke")
+mainStroke.Color = Color3.fromRGB(235, 64, 78)
+mainStroke.Thickness = 1.5
+mainStroke.Transparency = 0.25
+mainStroke.Parent = mainFrame
+
+-- 3. แถบด้านบน (TopBar)
+local topBar = Instance.new("Frame")
+topBar.Name = "TopBar"
+topBar.Size = UDim2.new(1, 0, 0, TOPBAR_PX)
+topBar.Position = UDim2.new(0, 0, 0, 0)
+topBar.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
+topBar.BorderSizePixel = 0
+topBar.Parent = mainFrame
+
+local topCorner = Instance.new("UICorner")
+topCorner.CornerRadius = UDim.new(0, CORNER_PX)
+topCorner.Parent = topBar
+
+local bottomCover = Instance.new("Frame")
+bottomCover.Size = UDim2.new(1, 0, 0, math.max(4, TOPBAR_PX - CORNER_PX))
+bottomCover.Position = UDim2.new(0, 0, 1, -math.max(4, TOPBAR_PX - CORNER_PX))
+bottomCover.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
+bottomCover.BorderSizePixel = 0
+bottomCover.Parent = topBar
+
+local topLine = Instance.new("Frame")
+topLine.Size = UDim2.new(1, 0, 0, 1)
+topLine.Position = UDim2.new(0, 0, 1, -1)
+topLine.BackgroundColor3 = Color3.fromRGB(52, 52, 68)
+topLine.BorderSizePixel = 0
+topLine.Parent = topBar
+
+-- ปุ่มแฮมเบอร์เกอร์ (≡)
+local menuBtn = Instance.new("TextButton")
+menuBtn.Name = "MenuBtn"
+menuBtn.AnchorPoint = Vector2.new(0, 0.5)
+menuBtn.Size = UDim2.new(0, 34, 0, 34)
+menuBtn.Position = UDim2.new(0, 8, 0.5, 0)
+menuBtn.BackgroundColor3 = Color3.fromRGB(45, 45, 58)
+menuBtn.BackgroundTransparency = 0.35
+menuBtn.Text = "≡"
+menuBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+menuBtn.Font = Enum.Font.GothamBold
+menuBtn.TextSize = 20
+menuBtn.Parent = topBar
+
+local menuBtnCorner = Instance.new("UICorner")
+menuBtnCorner.CornerRadius = UDim.new(0, 10)
+menuBtnCorner.Parent = menuBtn
+
+-- ชื่อเมนูบน TopBar
+local titleLabel = Instance.new("TextLabel")
+titleLabel.AnchorPoint = Vector2.new(0, 0.5)
+titleLabel.Size = UDim2.new(1, -130, 0.7, 0)
+titleLabel.Position = UDim2.new(0, 50, 0.5, 0)
+titleLabel.BackgroundTransparency = 1
+titleLabel.Text = "MAIN MENU"
+titleLabel.TextColor3 = Color3.fromRGB(245, 245, 250)
+titleLabel.Font = Enum.Font.GothamBold
+titleLabel.TextSize = isMobile and 13 or 15
+titleLabel.TextXAlignment = Enum.TextXAlignment.Left
+titleLabel.TextTruncate = Enum.TextTruncate.AtEnd
+titleLabel.Parent = topBar
+registerTranslatable(titleLabel, "เมนูหลัก", "MAIN MENU")
+
+-- ปุ่มปิด (X)
+local closeBtn = Instance.new("TextButton")
+closeBtn.Name = "CloseBtn"
+closeBtn.AnchorPoint = Vector2.new(1, 0.5)
+closeBtn.Size = UDim2.new(0, 32, 0, 32)
+closeBtn.Position = UDim2.new(1, -8, 0.5, 0)
+closeBtn.BackgroundColor3 = Color3.fromRGB(235, 64, 78)
+closeBtn.BackgroundTransparency = 0.15
+closeBtn.Text = "X"
+closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeBtn.Font = Enum.Font.GothamBold
+closeBtn.TextSize = 14
+closeBtn.Parent = topBar
+
+local closeCorner = Instance.new("UICorner")
+closeCorner.CornerRadius = UDim.new(0, 10)
+closeCorner.Parent = closeBtn
+
+-- ปุ่มย่อ (–)
+local minBtn = Instance.new("TextButton")
+minBtn.Name = "MinBtn"
+minBtn.AnchorPoint = Vector2.new(1, 0.5)
+minBtn.Size = UDim2.new(0, 32, 0, 32)
+minBtn.Position = UDim2.new(1, -46, 0.5, 0)
+minBtn.BackgroundColor3 = Color3.fromRGB(48, 48, 62)
+minBtn.BackgroundTransparency = 0.25
+minBtn.Text = "–"
+minBtn.TextColor3 = Color3.fromRGB(235, 235, 245)
+minBtn.Font = Enum.Font.GothamBold
+minBtn.TextSize = 16
+minBtn.Parent = topBar
+
+local minCorner = Instance.new("UICorner")
+minCorner.CornerRadius = UDim.new(0, 10)
+minCorner.Parent = minBtn
+
+-- 4. แถบเมนูด้านซ้าย (Sidebar) — เปิดไว้ตั้งแต่ต้น
+local sidebar = Instance.new("Frame")
+sidebar.Name = "Sidebar"
+sidebar.Size = UDim2.new(SIDEBAR_SCALE, 0, 1, -TOPBAR_PX)
+sidebar.Position = UDim2.new(0, 0, 0, TOPBAR_PX)
+sidebar.BackgroundTransparency = 1
+sidebar.BorderSizePixel = 0
+sidebar.ClipsDescendants = true
+sidebar.Parent = mainFrame
+
+local sideLayout = Instance.new("UIListLayout")
+sideLayout.Padding = UDim.new(0, 8)
+sideLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+sideLayout.Parent = sidebar
+
+local sidePadding = Instance.new("UIPadding")
+sidePadding.PaddingTop = UDim.new(0, 12)
+sidePadding.PaddingBottom = UDim.new(0, 16)
+sidePadding.Parent = sidebar
+
+-- 5. พื้นที่แสดงเนื้อหาหลัก (Content Area) — ขยับรับ Sidebar ที่เปิดอยู่ตั้งแต่ต้น
+local contentContainer = Instance.new("Frame")
+contentContainer.Name = "ContentContainer"
+contentContainer.Size = UDim2.new(1 - SIDEBAR_SCALE, 0, 1, -TOPBAR_PX)
+contentContainer.Position = UDim2.new(SIDEBAR_SCALE, 0, 0, TOPBAR_PX)
+contentContainer.BackgroundTransparency = 1
+contentContainer.Parent = mainFrame
+
+-- ==========================================
+-- 6. แคปซูล + เวลา + รูปโปรไฟล์ + วงกลมเปลี่ยนภาษา + วงกลมล็อก
+-- ==========================================
+local circleSize = isMobile and 52 or 48
+local popCircleSize = math.round(circleSize * 1.12)
+local avatarCircleSize = isMobile and 34 or 32
+local langCircleSize = isMobile and 34 or 32
+local lockCircleSize = isMobile and 34 or 32
+local clockW = isMobile and 88 or 96
+local capsuleExpandedW = popCircleSize
+	+ 10
+	+ clockW
+	+ 8
+	+ avatarCircleSize
+	+ 8
+	+ langCircleSize
+	+ 8
+	+ lockCircleSize
+	+ 10
+
+local dockContainer = Instance.new("Frame")
+dockContainer.Name = "FloatingTDock"
+dockContainer.AnchorPoint = Vector2.new(0.5, 0)
+dockContainer.Size = UDim2.new(0, circleSize, 0, popCircleSize)
+dockContainer.Position = UDim2.new(0.5, 0, 0, 14)
+dockContainer.BackgroundTransparency = 1
+dockContainer.Visible = false
+dockContainer.Parent = screenGui
+
+local capsuleFrame = Instance.new("Frame")
+capsuleFrame.Name = "CapsuleFrame"
+capsuleFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+capsuleFrame.Size = UDim2.new(0, circleSize, 0, circleSize)
+capsuleFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
+capsuleFrame.BackgroundColor3 = Color3.fromRGB(22, 16, 20)
+capsuleFrame.BorderSizePixel = 0
+capsuleFrame.ClipsDescendants = true
+capsuleFrame.ZIndex = 1
+capsuleFrame.Parent = dockContainer
+
+local capsuleCorner = Instance.new("UICorner")
+capsuleCorner.CornerRadius = UDim.new(0, popCircleSize * 0.5)
+capsuleCorner.Parent = capsuleFrame
+
+local capsuleStroke = Instance.new("UIStroke")
+capsuleStroke.Color = Color3.fromRGB(255, 75, 95)
+capsuleStroke.Thickness = 2
+capsuleStroke.Transparency = 0.15
+capsuleStroke.Parent = capsuleFrame
+
+local openFloatingBtn = Instance.new("TextButton")
+openFloatingBtn.Name = "OpenFloatingBtn"
+openFloatingBtn.AnchorPoint = Vector2.new(0.5, 0.5)
+openFloatingBtn.Size = UDim2.new(0, circleSize, 0, circleSize)
+openFloatingBtn.Position = UDim2.new(0, circleSize * 0.5, 0.5, 0)
+openFloatingBtn.BackgroundColor3 = Color3.fromRGB(32, 18, 24)
+openFloatingBtn.Text = ""
+openFloatingBtn.Rotation = 0
+openFloatingBtn.ZIndex = 3
+openFloatingBtn.Parent = capsuleFrame
+
+local floatCorner = Instance.new("UICorner")
+floatCorner.CornerRadius = UDim.new(0.5, 0)
+floatCorner.Parent = openFloatingBtn
+
+local circleStroke = Instance.new("UIStroke")
+circleStroke.Color = Color3.fromRGB(255, 95, 115)
+circleStroke.Thickness = 1.5
+circleStroke.Transparency = 0.3
+circleStroke.Parent = openFloatingBtn
+
+local glowBackLabel = Instance.new("TextLabel")
+glowBackLabel.Name = "GlowBack"
+glowBackLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+glowBackLabel.Size = UDim2.fromScale(1, 1)
+glowBackLabel.Position = UDim2.fromScale(0.5, 0.5)
+glowBackLabel.BackgroundTransparency = 1
+glowBackLabel.Text = "T"
+glowBackLabel.TextColor3 = Color3.fromRGB(255, 45, 75)
+glowBackLabel.TextTransparency = 0.25
+glowBackLabel.Font = Enum.Font.FredokaOne
+glowBackLabel.TextSize = isMobile and 30 or 28
+glowBackLabel.ZIndex = 3
+glowBackLabel.Parent = openFloatingBtn
+
+local glowBlur = Instance.new("UIStroke")
+glowBlur.Color = Color3.fromRGB(255, 50, 80)
+glowBlur.Thickness = 4
+glowBlur.Transparency = 0.45
+glowBlur.Parent = glowBackLabel
+
+local neonTLabel = Instance.new("TextLabel")
+neonTLabel.Name = "NeonT"
+neonTLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+neonTLabel.Size = UDim2.fromScale(1, 1)
+neonTLabel.Position = UDim2.fromScale(0.5, 0.5)
+neonTLabel.BackgroundTransparency = 1
+neonTLabel.Text = "T"
+neonTLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+neonTLabel.Font = Enum.Font.FredokaOne
+neonTLabel.TextSize = isMobile and 28 or 26
+neonTLabel.ZIndex = 4
+neonTLabel.Parent = openFloatingBtn
+
+local tGradient = Instance.new("UIGradient")
+tGradient.Color = ColorSequence.new({
+	ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 220, 225)),
+	ColorSequenceKeypoint.new(0.5, Color3.fromRGB(255, 85, 105)),
+	ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 35, 65))
+})
+tGradient.Rotation = 90
+tGradient.Parent = neonTLabel
+
+-- ป้ายบอกเวลาในแถบแคปซูล
+local clockBtn = Instance.new("TextButton")
+clockBtn.Name = "ClockBtn"
+clockBtn.AnchorPoint = Vector2.new(0, 0.5)
+clockBtn.Size = UDim2.new(0, clockW, 0, 34)
+clockBtn.Position = UDim2.new(0, popCircleSize + 10, 0.5, 0)
+clockBtn.BackgroundColor3 = Color3.fromRGB(36, 26, 32)
+clockBtn.Text = os.date("%H:%M:%S")
+clockBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+clockBtn.Font = Enum.Font.GothamBold
+clockBtn.TextSize = 13
+clockBtn.ZIndex = 2
+clockBtn.Parent = capsuleFrame
+
+local clockCorner = Instance.new("UICorner")
+clockCorner.CornerRadius = UDim.new(0.5, 0)
+clockCorner.Parent = clockBtn
+
+task.spawn(function()
+	while screenGui.Parent do
+		clockBtn.Text = os.date("%H:%M:%S")
+		task.wait(1)
+	end
+end)
+
+-- วงกลมรูปโปรไฟล์ตัวละครผู้เล่นข้างในแคปซูล
+local avatarX = popCircleSize + 10 + clockW + 8
+local avatarCircle = Instance.new("ImageLabel")
+avatarCircle.Name = "CharacterAvatarCircle"
+avatarCircle.AnchorPoint = Vector2.new(0, 0.5)
+avatarCircle.Size = UDim2.new(0, avatarCircleSize, 0, avatarCircleSize)
+avatarCircle.Position = UDim2.new(0, avatarX, 0.5, 0)
+avatarCircle.BackgroundColor3 = Color3.fromRGB(42, 30, 38)
+avatarCircle.BorderSizePixel = 0
+avatarCircle.ScaleType = Enum.ScaleType.Crop
+avatarCircle.ZIndex = 3
+avatarCircle.Parent = capsuleFrame
+
+local avatarCircleCorner = Instance.new("UICorner")
+avatarCircleCorner.CornerRadius = UDim.new(0.5, 0)
+avatarCircleCorner.Parent = avatarCircle
+
+local avatarStroke = Instance.new("UIStroke")
+avatarStroke.Color = Color3.fromRGB(255, 85, 105)
+avatarStroke.Thickness = 1.6
+avatarStroke.Transparency = 0.2
+avatarStroke.Parent = avatarCircle
+
+task.spawn(function()
+	local ok, content = pcall(function()
+		return Players:GetUserThumbnailAsync(
+			player.UserId,
+			Enum.ThumbnailType.HeadShot,
+			Enum.ThumbnailSize.Size150x150
+		)
+	end)
+	if ok and content and avatarCircle.Parent then
+		avatarCircle.Image = content
+	end
+end)
+
+-- วงกลมเปลี่ยนภาษา (TH <-> EN) ข้างรูปโปรไฟล์
+local langX = avatarX + avatarCircleSize + 8
+local langCircleBtn = Instance.new("TextButton")
+langCircleBtn.Name = "LangCircleBtn"
+langCircleBtn.AnchorPoint = Vector2.new(0, 0.5)
+langCircleBtn.Size = UDim2.new(0, langCircleSize, 0, langCircleSize)
+langCircleBtn.Position = UDim2.new(0, langX, 0.5, 0)
+langCircleBtn.BackgroundColor3 = (currentLang == "EN") and Color3.fromRGB(235, 64, 78) or Color3.fromRGB(36, 26, 32)
+langCircleBtn.Text = currentLang
+langCircleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+langCircleBtn.Font = Enum.Font.GothamBold
+langCircleBtn.TextSize = 12
+langCircleBtn.ZIndex = 4
+langCircleBtn.Parent = capsuleFrame
+
+local langCorner = Instance.new("UICorner")
+langCorner.CornerRadius = UDim.new(0.5, 0)
+langCorner.Parent = langCircleBtn
+
+local langStroke = Instance.new("UIStroke")
+langStroke.Color = Color3.fromRGB(255, 85, 105)
+langStroke.Thickness = 1.5
+langStroke.Transparency = (currentLang == "EN") and 0 or 0.25
+langStroke.Parent = langCircleBtn
+
+langCircleBtn.MouseButton1Click:Connect(function()
+	currentLang = (currentLang == "TH") and "EN" or "TH"
+	langCircleBtn.Text = currentLang
+	if currentLang == "EN" then
+		langCircleBtn.BackgroundColor3 = Color3.fromRGB(235, 64, 78)
+		langStroke.Transparency = 0
+	else
+		langCircleBtn.BackgroundColor3 = Color3.fromRGB(36, 26, 32)
+		langStroke.Transparency = 0.25
+	end
+	applyLanguageToAll()
+end)
+
+-- วงกลมล็อกอยู่รวมด้านในแคปซูลถัดจากวงกลมเปลี่ยนภาษา
+local lockX = langX + langCircleSize + 8
+local pinLockBtn = Instance.new("TextButton")
+pinLockBtn.Name = "PinLockBtn"
+pinLockBtn.AnchorPoint = Vector2.new(0, 0.5)
+pinLockBtn.Size = UDim2.new(0, lockCircleSize, 0, lockCircleSize)
+pinLockBtn.Position = UDim2.new(0, lockX, 0.5, 0)
+pinLockBtn.BackgroundColor3 = Color3.fromRGB(36, 26, 32)
+pinLockBtn.Text = "🔓"
+pinLockBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+pinLockBtn.Font = Enum.Font.GothamBold
+pinLockBtn.TextSize = 15
+pinLockBtn.ZIndex = 4
+pinLockBtn.Parent = capsuleFrame
+
+local pinCorner = Instance.new("UICorner")
+pinCorner.CornerRadius = UDim.new(0.5, 0)
+pinCorner.Parent = pinLockBtn
+
+local pinStroke = Instance.new("UIStroke")
+pinStroke.Color = Color3.fromRGB(255, 85, 105)
+pinStroke.Thickness = 1.5
+pinStroke.Transparency = 0.25
+pinStroke.Parent = pinLockBtn
+
+local isHovered = false
+local isPinned = false
+local wasExpanded = false
+local hoverCheckToken = 0
+local popTweenInfo = TweenInfo.new(0.18, Enum.EasingStyle.Back, Enum.EasingDirection.Out)
+local dockTweenInfo = TweenInfo.new(0.22, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
+local spinTweenInfo = TweenInfo.new(0.42, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
+
+local function updateDockState()
+	local shouldExpand = isHovered or isPinned
+
+	if shouldExpand then
+		if not wasExpanded then
+			openFloatingBtn.Rotation = 0
+			TweenService:Create(openFloatingBtn, spinTweenInfo, {Rotation = 360}):Play()
+		end
+		wasExpanded = true
+
+		TweenService:Create(dockContainer, dockTweenInfo, {
+			Size = UDim2.new(0, capsuleExpandedW, 0, popCircleSize)
+		}):Play()
+		TweenService:Create(capsuleFrame, dockTweenInfo, {
+			Size = UDim2.new(0, capsuleExpandedW, 0, popCircleSize),
+			Position = UDim2.new(0.5, 0, 0.5, 0)
+		}):Play()
+		TweenService:Create(openFloatingBtn, popTweenInfo, {
+			Size = UDim2.new(0, popCircleSize, 0, popCircleSize),
+			Position = UDim2.new(0, popCircleSize * 0.5, 0.5, 0),
+			BackgroundColor3 = Color3.fromRGB(52, 22, 32)
+		}):Play()
+		TweenService:Create(circleStroke, dockTweenInfo, {Thickness = 2.4, Transparency = 0}):Play()
+		TweenService:Create(glowBlur, dockTweenInfo, {Thickness = 7.5, Transparency = 0.1}):Play()
+	else
+		wasExpanded = false
+		TweenService:Create(openFloatingBtn, dockTweenInfo, {
+			Size = UDim2.new(0, circleSize, 0, circleSize),
+			Position = UDim2.new(0, circleSize * 0.5, 0.5, 0),
+			BackgroundColor3 = Color3.fromRGB(32, 18, 24),
+			Rotation = 0
+		}):Play()
+		TweenService:Create(dockContainer, dockTweenInfo, {
+			Size = UDim2.new(0, circleSize, 0, popCircleSize)
+		}):Play()
+		TweenService:Create(capsuleFrame, dockTweenInfo, {
+			Size = UDim2.new(0, circleSize, 0, circleSize),
+			Position = UDim2.new(0.5, 0, 0.5, 0)
+		}):Play()
+		TweenService:Create(circleStroke, dockTweenInfo, {Thickness = 1.5, Transparency = 0.3}):Play()
+		TweenService:Create(glowBlur, dockTweenInfo, {Thickness = 4, Transparency = 0.45}):Play()
+	end
+end
+
+local function isPointInGui(pt, guiObj)
+	if not guiObj or not guiObj.Visible then return false end
+	local p = guiObj.AbsolutePosition
+	local s = guiObj.AbsoluteSize
+	return pt.X >= p.X and pt.X <= p.X + s.X and pt.Y >= p.Y and pt.Y <= p.Y + s.Y
+end
+
+local function checkStillHoveringAny()
+	local mousePos = UserInputService:GetMouseLocation()
+	return isPointInGui(mousePos, openFloatingBtn)
+		or isPointInGui(mousePos, capsuleFrame)
+		or isPointInGui(mousePos, clockBtn)
+		or isPointInGui(mousePos, avatarCircle)
+		or isPointInGui(mousePos, langCircleBtn)
+		or isPointInGui(mousePos, pinLockBtn)
+end
+
+local function bindHover(guiObj)
+	guiObj.MouseEnter:Connect(function()
+		hoverCheckToken += 1
+		isHovered = true
+		updateDockState()
+	end)
+	guiObj.MouseLeave:Connect(function()
+		hoverCheckToken += 1
+		local token = hoverCheckToken
+		task.delay(0.1, function()
+			if token ~= hoverCheckToken then return end
+			isHovered = checkStillHoveringAny()
+			updateDockState()
+		end)
+	end)
+end
+
+bindHover(openFloatingBtn)
+bindHover(capsuleFrame)
+bindHover(clockBtn)
+bindHover(avatarCircle)
+bindHover(langCircleBtn)
+bindHover(pinLockBtn)
+
+pinLockBtn.MouseButton1Click:Connect(function()
+	isPinned = not isPinned
+	if isPinned then
+		pinLockBtn.Text = "🔒"
+		pinLockBtn.BackgroundColor3 = Color3.fromRGB(235, 64, 78)
+		pinStroke.Transparency = 0
+	else
+		pinLockBtn.Text = "🔓"
+		pinLockBtn.BackgroundColor3 = Color3.fromRGB(36, 26, 32)
+		pinStroke.Transparency = 0.25
+		isHovered = checkStillHoveringAny()
+	end
+	updateDockState()
+end)
+
+-- ==========================================
+-- ฟังก์ชันกัน UI ออกนอกจอ
+-- ==========================================
+local function getViewportSize()
+	local cam = workspace.CurrentCamera
+	return (cam and cam.ViewportSize) or Vector2.new(1920, 1080)
+end
+
+local function clampPositionToScreen(targetScaleX, targetScaleY, widthPx, heightPx)
+	local vp = getViewportSize()
+	local halfW = (widthPx * 0.5) + SCREEN_MARGIN
+	local halfH = (heightPx * 0.5) + SCREEN_MARGIN
+
+	local minCenterX = math.min(halfW, vp.X * 0.5)
+	local maxCenterX = math.max(vp.X - halfW, vp.X * 0.5)
+	local minCenterY = math.min(halfH, vp.Y * 0.5)
+	local maxCenterY = math.max(vp.Y - halfH, vp.Y * 0.5)
+
+	local clampedPxX = math.clamp(targetScaleX * vp.X, minCenterX, maxCenterX)
+	local clampedPxY = math.clamp(targetScaleY * vp.Y, minCenterY, maxCenterY)
+
+	return UDim2.fromScale(clampedPxX / vp.X, clampedPxY / vp.Y)
+end
+
+local function keepMainFrameInBounds()
+	local vp = getViewportSize()
+	local size = mainFrame.AbsoluteSize
+	if size.X <= 0 or size.Y <= 0 then return end
+	mainFrame.Position = clampPositionToScreen(mainFrame.Position.X.Scale, mainFrame.Position.Y.Scale, size.X, size.Y)
+end
+
+-- ==========================================
+-- API สำหรับสร้างแท็บและปุ่ม (พร้อมให้เรียกเพิ่มฟังก์ชันเอง)
+-- ==========================================
+local pages = {}
+local tabButtons = {}
+local activeTabName = nil
+
+local function selectTab(tabKey)
+	activeTabName = tabKey
+	for name, p in pairs(pages) do
+		p.Visible = (name == tabKey)
+	end
+	for name, btn in pairs(tabButtons) do
+		if name == tabKey then
+			btn.BackgroundColor3 = Color3.fromRGB(235, 64, 78)
+			btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+		else
+			btn.BackgroundColor3 = Color3.fromRGB(36, 36, 46)
+			btn.TextColor3 = Color3.fromRGB(210, 210, 220)
+		end
+	end
+end
+
+local function createTab(thTabName, enTabName)
+	local resolvedTh, resolvedEn = resolveBilingualPair(thTabName, enTabName)
+	local tabKey = resolvedTh ~= "" and resolvedTh or resolvedEn
+
+	local page = Instance.new("ScrollingFrame")
+	page.Name = (resolvedEn ~= "" and resolvedEn or "Tab") .. "Page"
+	page.Size = UDim2.new(1, -24, 1, -24)
+	page.Position = UDim2.new(0, 12, 0, 12)
+	page.BackgroundTransparency = 1
+	page.BorderSizePixel = 0
+	page.ScrollBarThickness = 4
+	page.ScrollBarImageColor3 = Color3.fromRGB(235, 64, 78)
+	page.CanvasSize = UDim2.new(0, 0, 0, 0)
+	page.AutomaticCanvasSize = Enum.AutomaticSize.Y
+	page.Visible = false
+	page.Parent = contentContainer
+
+	local pageLayout = Instance.new("UIListLayout")
+	pageLayout.Padding = UDim.new(0, 10)
+	pageLayout.Parent = page
+
+	local pagePad = Instance.new("UIPadding")
+	pagePad.PaddingBottom = UDim.new(0, 20)
+	pagePad.Parent = page
+
+	pages[tabKey] = page
+
+	local tabBtn = Instance.new("TextButton")
+	tabBtn.Size = UDim2.new(0.86, 0, 0, isMobile and 38 or 34)
+	tabBtn.BackgroundColor3 = Color3.fromRGB(36, 36, 46)
+	tabBtn.Text = L(resolvedTh, resolvedEn)
+	tabBtn.TextColor3 = Color3.fromRGB(210, 210, 220)
+	tabBtn.Font = Enum.Font.GothamSemibold
+	tabBtn.TextSize = 13
+	tabBtn.Parent = sidebar
+
+	registerTranslatable(tabBtn, resolvedTh, resolvedEn)
+
+	local tabCorner = Instance.new("UICorner")
+	tabCorner.CornerRadius = UDim.new(0, 12)
+	tabCorner.Parent = tabBtn
+
+	tabButtons[tabKey] = tabBtn
+
+	tabBtn.MouseButton1Click:Connect(function()
+		selectTab(tabKey)
+	end)
+
+	if not activeTabName then
+		selectTab(tabKey)
+	end
+
+	return page
+end
+
+local function addButton(parentPage, thText, enText, callback)
+	local resolvedTh, resolvedEn = resolveBilingualPair(thText, enText)
+
+	local btn = Instance.new("TextButton")
+	btn.Size = UDim2.new(1, 0, 0, isMobile and 46 or 42)
+	btn.BackgroundColor3 = Color3.fromRGB(34, 34, 44)
+	btn.Text = L(resolvedTh, resolvedEn)
+	btn.TextColor3 = Color3.fromRGB(245, 245, 250)
+	btn.Font = Enum.Font.GothamSemibold
+	btn.TextSize = 14
+	btn.Parent = parentPage
+
+	registerTranslatable(btn, resolvedTh, resolvedEn)
+
+	local corner = Instance.new("UICorner")
+	corner.CornerRadius = UDim.new(0, 14)
+	corner.Parent = btn
+
+	local stroke = Instance.new("UIStroke")
+	stroke.Color = Color3.fromRGB(62, 62, 78)
+	stroke.Thickness = 1
+	stroke.Transparency = 0.4
+	stroke.Parent = btn
+
+	btn.MouseEnter:Connect(function()
+		TweenService:Create(btn, TweenInfo.new(0.15), {BackgroundColor3 = Color3.fromRGB(48, 48, 62)}):Play()
+	end)
+
+	btn.MouseLeave:Connect(function()
+		TweenService:Create(btn, TweenInfo.new(0.15), {BackgroundColor3 = Color3.fromRGB(34, 34, 44)}):Play()
+	end)
+
+	btn.MouseButton1Click:Connect(function()
+		if callback then
+			callback(currentLang)
+		end
+	end)
+
+	return btn
+end
+
+applyLanguageToAll()
+
+-- ==========================================
+-- แอนิเมชันเปิด/ปิด Sidebar, ย่อ (–), ปิด (X)
+-- ==========================================
+local sidebarOpen = true
+local minimized = false
+local tweenInfo = TweenInfo.new(0.22, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
+
+menuBtn.MouseButton1Click:Connect(function()
+	if minimized then return end
+	sidebarOpen = not sidebarOpen
+
+	if sidebarOpen then
+		TweenService:Create(mainFrame, tweenInfo, {Size = UDim2.fromScale(OPEN_WIDTH, FRAME_HEIGHT)}):Play()
+		TweenService:Create(sidebar, tweenInfo, {Size = UDim2.new(SIDEBAR_SCALE, 0, 1, -TOPBAR_PX)}):Play()
+		TweenService:Create(contentContainer, tweenInfo, {
+			Size = UDim2.new(1 - SIDEBAR_SCALE, 0, 1, -TOPBAR_PX),
+			Position = UDim2.new(SIDEBAR_SCALE, 0, 0, TOPBAR_PX)
+		}):Play()
+	else
+		TweenService:Create(mainFrame, tweenInfo, {Size = UDim2.fromScale(CLOSED_WIDTH, FRAME_HEIGHT)}):Play()
+		TweenService:Create(sidebar, tweenInfo, {Size = UDim2.new(0, 0, 1, -TOPBAR_PX)}):Play()
+		TweenService:Create(contentContainer, tweenInfo, {
+			Size = UDim2.new(1, 0, 1, -TOPBAR_PX),
+			Position = UDim2.new(0, 0, 0, TOPBAR_PX)
+		}):Play()
+	end
+
+	task.delay(0.24, keepMainFrameInBounds)
+end)
+
+minBtn.MouseButton1Click:Connect(function()
+	minimized = not minimized
+	local vp = getViewportSize()
+	local targetWidth = sidebarOpen and OPEN_WIDTH or CLOSED_WIDTH
+	local minScaleY = TOPBAR_PX / vp.Y
+
+	if minimized then
+		contentContainer.Visible = false
+		sidebar.Visible = false
+		bottomCover.Visible = false
+		topLine.Visible = false
+		TweenService:Create(mainFrame, tweenInfo, {Size = UDim2.fromScale(targetWidth, minScaleY)}):Play()
+		minBtn.Text = "+"
+	else
+		TweenService:Create(mainFrame, tweenInfo, {Size = UDim2.fromScale(targetWidth, FRAME_HEIGHT)}):Play()
+		task.delay(0.1, function()
+			if not minimized then
+				contentContainer.Visible = true
+				sidebar.Visible = true
+				bottomCover.Visible = true
+				topLine.Visible = true
+			end
+		end)
+		minBtn.Text = "–"
+	end
+
+	task.delay(0.24, keepMainFrameInBounds)
+end)
+
+local function reopenMainMenu()
+	mainFrame.Visible = true
+	dockContainer.Visible = false
+	isHovered = false
+	wasExpanded = false
+	keepMainFrameInBounds()
+end
+
+closeBtn.MouseButton1Click:Connect(function()
+	mainFrame.Visible = false
+	dockContainer.Visible = true
+	updateDockState()
+end)
+
+openFloatingBtn.MouseButton1Click:Connect(reopenMainMenu)
+clockBtn.MouseButton1Click:Connect(reopenMainMenu)
+
+-- ==========================================
+-- ระบบลากย้ายที่ TopBar แบบกันออกนอกจอ
+-- ==========================================
+local dragging, dragInput, dragStart, startPos
+
+topBar.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		dragging = true
+		dragStart = input.Position
+		startPos = mainFrame.Position
+
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+			end
+		end)
+	end
+end)
+
+topBar.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		dragInput = input
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if input == dragInput and dragging then
+		local vp = getViewportSize()
+		local delta = input.Position - dragStart
+		local nextScaleX = startPos.X.Scale + (delta.X / vp.X)
+		local nextScaleY = startPos.Y.Scale + (delta.Y / vp.Y)
+		local size = mainFrame.AbsoluteSize
+		mainFrame.Position = clampPositionToScreen(nextScaleX, nextScaleY, size.X, size.Y)
+	end
+end)
+
+mainFrame:GetPropertyChangedSignal("AbsoluteSize"):Connect(keepMainFrameInBounds)
+
+-- ส่งออก API เผื่อเอาไปต่อยอดในสคริปต์แยกหรือเรียกใช้ผ่าน _G / shared
+getgenv().ToyHubAPI = {
+	createTab = createTab,
+	addButton = addButton,
+	selectTab = selectTab,
+	L = L,
+	translateThEn = translateThEn,
+	registerTranslatable = registerTranslatable,
+	addDict = addDict,
+	setLanguage = function(lang)
+		if lang == "TH" or lang == "EN" then
+			currentLang = lang
+			langCircleBtn.Text = currentLang
+			langCircleBtn.BackgroundColor3 = (currentLang == "EN") and Color3.fromRGB(235, 64, 78) or Color3.fromRGB(36, 26, 32)
+			langStroke.Transparency = (currentLang == "EN") and 0 or 0.25
+			applyLanguageToAll()
+		end
+	end,
+	getLanguage = function()
+		return currentLang
+	end,
+}
