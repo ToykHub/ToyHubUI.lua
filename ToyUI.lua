@@ -1097,6 +1097,40 @@ local function addButton(parentPage, thText, enText, callback)
 end
 
 -- ==========================================
+-- Helpers: Level / Quest Info for Profile
+-- ==========================================
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local function getPlayerLevel()
+	local pStats = LocalPlayer:FindFirstChild("PlayerStats")
+	local lvlObj = pStats and pStats:FindFirstChild("lvl")
+	if lvlObj and lvlObj:IsA("ValueBase") then
+		return tonumber(lvlObj.Value) or 1
+	end
+	return 1
+end
+
+local function getActiveQuestInfo()
+	local currentQuest = LocalPlayer:FindFirstChild("CurrentQuest")
+	local questProgress = LocalPlayer:FindFirstChild("QuestProgress")
+
+	local questVal = currentQuest and currentQuest:IsA("ValueBase") and tostring(currentQuest.Value) or ""
+	local progVal = questProgress and questProgress:IsA("ValueBase") and questProgress.Value or 0
+
+	local hasQuest = (questVal ~= "" and questVal ~= "None" and questVal ~= "nil")
+	return hasQuest, questVal, progVal
+end
+
+local function getFormattedQuestStatus()
+	local hasQ, qName, qProg = getActiveQuestInfo()
+	if not hasQ then
+		return L("ไม่มีเควส", "No Quest")
+	end
+	return string.format("%s (%s)", qName, tostring(qProg))
+end
+
+-- ==========================================
 -- สร้างหน้า Profile รวมอยู่ในตัว UI (อยู่บนสุดเสมอ: LayoutOrder = 1)
 -- ==========================================
 local profileTab = createTab("โปรไฟล์", "Profile", 1)
@@ -1148,10 +1182,10 @@ task.spawn(function()
 		)
 	end)
 	if ok and content then
-		if dockAvatarCircle.Parent then
+		if dockAvatarCircle and dockAvatarCircle.Parent then
 			dockAvatarCircle.Image = content
 		end
-		if profileAvatarCircle.Parent then
+		if profileAvatarCircle and profileAvatarCircle.Parent then
 			profileAvatarCircle.Image = content
 		end
 	end
@@ -1196,7 +1230,7 @@ toggleHideStroke.Parent = toggleHideBtn
 local mainTagLabel = Instance.new("TextLabel")
 mainTagLabel.Name = "MainTagText"
 mainTagLabel.AnchorPoint = Vector2.new(0, 0)
-mainTagLabel.Size = UDim2.new(1, -242, 0, 24)
+mainTagLabel.Size = UDim2.new(1, -250, 0, 24)
 mainTagLabel.Position = UDim2.new(0, 172, 0, 14)
 mainTagLabel.BackgroundTransparency = 1
 mainTagLabel.Text = "Hidden User"
@@ -1224,7 +1258,7 @@ subTagLabel.Parent = tagCard
 
 local detailCard = Instance.new("Frame")
 detailCard.Name = "ProfileDetailCard"
-detailCard.Size = UDim2.new(1, 0, 0, 162)
+detailCard.Size = UDim2.new(1, 0, 0, 218)
 detailCard.BackgroundColor3 = currentSurfaceColor
 detailCard.BorderSizePixel = 0
 detailCard.Parent = profileTab
@@ -1266,6 +1300,8 @@ local function createDetailRow()
 end
 
 local statusRow = createDetailRow()
+local levelRow = createDetailRow()
+local questRow = createDetailRow()
 local mapRow = createDetailRow()
 local timeRow = createDetailRow()
 local executorRow = createDetailRow()
@@ -1334,6 +1370,15 @@ local function showCopiedFeedback(btnObj, thMsg, enMsg)
 	end)
 end
 
+local function refreshProfileStatsRows()
+	for _, r in ipairs({ levelRow, questRow, timeRow }) do
+		applyFontSizeForLang(r, 15, 14)
+	end
+	levelRow.Text = L("เลเวล", "Level") .. ": " .. tostring(getPlayerLevel())
+	questRow.Text = L("เควส", "Quest") .. ": " .. getFormattedQuestStatus()
+	timeRow.Text = L("เวลา", "Time") .. ": " .. os.date("%H:%M:%S")
+end
+
 local function refreshProfileUI()
 	applyFontSizeForLang(badgePill, 14, 13)
 	badgePill.Text = L(defaultRole.th, defaultRole.en)
@@ -1355,15 +1400,16 @@ local function refreshProfileUI()
 		toggleHideStroke.Transparency = 0.35
 	end
 
-	for _, r in ipairs({ statusRow, mapRow, timeRow, executorRow, creatorRow }) do
+	for _, r in ipairs({ statusRow, mapRow, executorRow, creatorRow }) do
 		applyFontSizeForLang(r, 15, 14)
 	end
 
 	statusRow.Text = L("สถานะ", "Status") .. ": " .. L("กำลังออนไลน์", "Online")
 	mapRow.Text = L("แมปที่เล่นอยู่", "Current Map") .. ": " .. CURRENT_MAP_NAME
-	timeRow.Text = L("เวลา", "Time") .. ": " .. os.date("%H:%M:%S")
 	executorRow.Text = L("ตัวรัน", "Executor") .. ": " .. EXECUTOR_NAME
 	creatorRow.Text = L("สร้างโดย", "Made By") .. ": " .. L(SCRIPT_MADE_BY.th, SCRIPT_MADE_BY.en)
+
+	refreshProfileStatsRows()
 end
 
 toggleHideBtn.MouseButton1Click:Connect(function()
@@ -1375,8 +1421,7 @@ refreshProfileUI()
 
 task.spawn(function()
 	while profileTab.Parent do
-		applyFontSizeForLang(timeRow, 15, 14)
-		timeRow.Text = L("เวลา", "Time") .. ": " .. os.date("%H:%M:%S")
+		refreshProfileStatsRows()
 		task.wait(1)
 	end
 end)
